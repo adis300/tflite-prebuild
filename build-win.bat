@@ -10,7 +10,6 @@ RMDIR %BUILD_DIR%
 MKDIR %BUILD_DIR%\win
 MKDIR %BUILD_DIR%\include
 
-XCOPY 
 cd %SCRIPT_DIR%
 COPY %SCRIPT_DIR%\bazel-out\x64_windows-opt\bin\tensorflow\lite\c\*.dll %BUILD_DIR%\win /Y
 
