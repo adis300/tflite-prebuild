@@ -17,10 +17,10 @@ bazel build //tensorflow/lite/c:tensorflowlite_c.dll -c opt
 cd $SCRIPT_DIR
 
 rm -rf $BUILD_DIR
-mkdir -p $BUILD_DIR/apple/arm64
+mkdir -p $BUILD_DIR/darwin/arm64
 mkdir -p $BUILD_DIR/include
 
-cp $SCRIPT_DIR/bazel-out/darwin_arm64-opt/bin/tensorflow/lite/c/tensorflowlite_c.dll  $BUILD_DIR/apple/arm64/tensorflowlite_c.dylib
+cp $SCRIPT_DIR/bazel-out/darwin_arm64-opt/bin/tensorflow/lite/c/tensorflowlite_c.dll  $BUILD_DIR/darwin/arm64/tensorflowlite_c.dylib
 cp $TF_SRC_DIR/tensorflow/lite/c/c_api_types.h $BUILD_DIR/include
 cp $TF_SRC_DIR/tensorflow/lite/c/c_api.h $BUILD_DIR/include
 
