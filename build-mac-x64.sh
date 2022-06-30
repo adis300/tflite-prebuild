@@ -9,12 +9,13 @@ BUILD_DIR=${SCRIPT_DIR}/tflite_build
 function echo_y() { echo -e "\033[1;33m$@\033[0m" ; }   # yellow
 function echo_r() { echo -e "\033[0;31m$@\033[0m" ; }   # red
 
-# python3 configure.py
 rm -rf $BUILD_DIR
-ARCH="macos——心6——64"
-ARCH_NAME='darwin_x86_64'
+ARCH="macos"
+ARCH_NAME='darwin'
 # bazel build --config opt --cpu=darwin_arm64 --host_cpu=darwin_arm64 //tensorflow/tools/lib_package:libtensorflow
 cd $TF_SRC_DIR
+python3 configure.py
+
 bazel build --config=macos -c opt //tensorflow/lite/c:libtensorflowlite_c.dylib \
         --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 
