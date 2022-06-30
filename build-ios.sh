@@ -11,7 +11,7 @@ function echo_r() { echo -e "\033[0;31m$@\033[0m" ; }   # red
 
 # python3 configure.py
 rm -rf $BUILD_DIR
-ARCHS="macos_arm64" # macos
+ARCHS="ios_arm64 ios_sim_arm64 ios_x86_64" # ios_armv7 ios_i386
 
 for ARCH in ${ARCHS}
 do
@@ -19,16 +19,16 @@ do
     bazel build --config=$ARCH -c opt //tensorflow/lite/c:libtensorflowlite_c.dylib \
         --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 
-    if [ "$ARCH" == "macos_arm64" ]; then
-        ARCH_NAME='darwin_arm64'
-    #elif [ "$ARCH" == "macos" ]; then
-    #    ARCH_NAME='darwin_x86_64'
+    if [ "$ARCH" == "ios_arm64" ]; then
+        ARCH_NAME='ios_arm64'
+    elif [ "$ARCH" == "ios_sim_arm64" ]; then
+        ARCH_NAME='ios_sim_arm64'
+    elif [ "$ARCH" == "ios_x86_64" ]; then
+        ARCH_NAME='ios_x86_64'
     fi
 
-    mkdir -p $BUILD_DIR/macos/$ARCH_NAME
-
-    cp $TF_SRC_DIR/bazel-out/${ARCH_NAME}-opt/bin/tensorflow/lite/c/libtensorflowlite_c.dylib  $BUILD_DIR/macos/$ARCH_NAME/libtensorflowlite_c.dylib
-
+    mkdir -p $BUILD_DIR/ios/$ARCH_NAME
+    cp $TF_SRC_DIR/bazel-out/${ARCH_NAME}-opt/bin/tensorflow/lite/c/libtensorflowlite_c.dylib  $BUILD_DIR/ios/$ARCH_NAME/libtensorflowlite_c.dylib
 done
 
 cd $SCRIPT_DIR
