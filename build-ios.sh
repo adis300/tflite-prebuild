@@ -11,7 +11,7 @@ function echo_r() { echo -e "\033[0;31m$@\033[0m" ; }   # red
 
 # python3 configure.py
 rm -rf $BUILD_DIR
-ARCHS="ios_arm64 ios_sim_arm64 ios_x86_64" # ios_armv7 ios_i386
+ARCHS="ios_arm64e ios_sim_arm64 ios_x86_64" # ios_armv7 ios_i386
 
 for ARCH in ${ARCHS}
 do
@@ -30,6 +30,10 @@ do
     mkdir -p $BUILD_DIR/ios/$ARCH_NAME
     cp $TF_SRC_DIR/bazel-out/${ARCH_NAME}-opt/bin/tensorflow/lite/c/libtensorflowlite_c.dylib  $BUILD_DIR/ios/$ARCH_NAME/libtensorflowlite_c.dylib
 done
+
+#cd $TF_SRC_DIR
+#bazel build --config=ios -c opt //tensorflow/lite/c:libtensorflowlite_c.dylib \
+#    --config=ios --ios_multi_cpus="x86_64,arm64,arm64e"
 
 cd $SCRIPT_DIR
 mkdir -p $BUILD_DIR/include
