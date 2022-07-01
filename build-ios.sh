@@ -11,7 +11,7 @@ function echo_r() { echo -e "\033[0;31m$@\033[0m" ; }   # red
 
 # python3 configure.py
 rm -rf $BUILD_DIR
-ARCHS="ios_arm64e ios_sim_arm64 ios_x86_64" # ios_armv7 ios_i386
+ARCHS="ios_arm64e ios_arm64 ios_sim_arm64 ios_x86_64" # ios_armv7 ios_i386
 
 for ARCH in ${ARCHS}
 do
@@ -21,6 +21,8 @@ do
 
     if [ "$ARCH" == "ios_arm64" ]; then
         ARCH_NAME='ios_arm64'
+    elif [ "$ARCH" == "ios_arm64e" ]; then
+        ARCH_NAME='ios_arm64e'
     elif [ "$ARCH" == "ios_sim_arm64" ]; then
         ARCH_NAME='ios_sim_arm64'
     elif [ "$ARCH" == "ios_x86_64" ]; then
