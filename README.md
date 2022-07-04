@@ -4,6 +4,15 @@ Prebuild tflite for many platforms.
 # Makesure bazel >= 5.1 is installed
 choco install bazel --version=5.1.1
 
+# iOS
+```
+cd tensorflow
+edit .bazelrc
+Add the following lines under 
+build:ios_arm64
+build:ios_arm64e --config=ios
+build:ios_arm64e --cpu=ios_arm64e
+```
 
 # MacOS
 brew tap bazelbuild/tap
